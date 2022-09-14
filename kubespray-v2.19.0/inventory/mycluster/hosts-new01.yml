@@ -1,0 +1,31 @@
+all:
+  hosts:
+    ubun20-01:
+      ansible_host: ubun20-01                                                     
+    ubun20-02:
+      ansible_host: ubun20-02
+    ubun20-04:
+      ansible_host: ubun20-04
+  children:
+    kube_control_plane:                                                                         
+      hosts:
+        ubun20-01:
+        ubun20-02:
+        ubun20-04:
+    kube_node:                                                                                              
+      hosts:
+        ubun20-01:
+        ubun20-02:
+        ubun20-04:
+    etcd:                                                                                         
+      hosts:
+        ubun20-01:
+        ubun20-02:
+        ubun20-04:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+        calico_rr:  
+    calico_rr:  
+      hosts: {}
