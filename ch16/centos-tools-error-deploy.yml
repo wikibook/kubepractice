@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cent-tools
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cent-tools
+  strategy:
+  template:
+    metadata:
+      labels:
+        app: cent-tools
+    spec:
+      containers:
+      - image: centos/tools:no
+        name: tools
+        command:
+        - /bin/sh
+        - -c
+        - "sleep inf"

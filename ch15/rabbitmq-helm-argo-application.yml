@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq-helm
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: rabbitmq
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://gitlab.myweb.io/jerry/test-stg.git
+    path: rabbitmq-10.1.8
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - my-values.yaml
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true 

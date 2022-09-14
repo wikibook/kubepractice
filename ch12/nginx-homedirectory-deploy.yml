@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: default
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: web-server
+        image: nginx
+        volumeMounts:
+          - name: mypvc
+            mountPath: /usr/share/nginx/html
+      volumes:
+        - name: mypvc
+          persistentVolumeClaim:
+            claimName: cephfs-pvc

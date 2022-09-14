@@ -1,0 +1,34 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: juice-ingressroutetls
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`www.myweb.com`) && PathPrefix(`/juice`)
+    kind: Rule
+    services:
+    - name: juice-svc
+      port: 80
+  tls:
+    secretName: myweb-tls
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: water-ingressroutetls
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`www.myweb.com`) && PathPrefix(`/water`)
+    kind: Rule
+    services:
+    - name: water-svc
+      port: 80
+  tls:
+    secretName: myweb-tls

@@ -1,0 +1,8 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: mysql-snapshot-01
+spec:
+  volumeSnapshotClassName: csi-rbdplugin-snapclass  # snapshot class 지정
+  source:
+    persistentVolumeClaimName: mysql-pv-claim  # 백업 대상 PVC 지정

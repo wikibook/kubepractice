@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: 15.0.3
+description: The One DevOps Platform
+home: https://about.gitlab.com/
+icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+keywords:
+- gitlab
+maintainers:
+- email: support@gitlab.com
+  name: GitLab Inc.
+name: gitlab
+sources:
+- https://gitlab.com/gitlab-org/charts/gitlab
+version: 6.0.3

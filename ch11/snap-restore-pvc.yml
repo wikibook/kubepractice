@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim   # 기존 PVC 이름과 동일하게 설정
+spec:
+  storageClassName: rook-ceph-block  # PVC 복구에 사용할 StorageClass 지정 
+  dataSource:
+    name: mysql-snapshot-01
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi  

@@ -1,0 +1,65 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: coffee-ingressroute
+  namespace: default
+spec:
+  entryPoints:
+  - web
+  routes:
+  - match: Host(`coffee.myweb.com`)
+    kind: Rule
+    services:
+    - name: coffee-svc
+      port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tea-ingressroutetls
+  namespace: default
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: Host(`tea.myweb.com`)
+    kind: Rule
+    services:
+    - name: tea-svc
+      port: 80
+  tls:
+    certResolver: myresolver
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: juice-ingressroutetls
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`www.myweb.com`) && PathPrefix(`/juice`)
+    kind: Rule
+    services:
+    - name: juice-svc
+      port: 80
+  tls:
+    certResolver: myresolver
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: water-ingressroutetls
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`www.myweb.com`) && PathPrefix(`/water`)
+    kind: Rule
+    services:
+    - name: water-svc
+      port: 80
+  tls:
+    certResolver: myresolver

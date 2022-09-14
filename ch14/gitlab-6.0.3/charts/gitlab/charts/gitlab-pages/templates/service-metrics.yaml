@@ -1,0 +1,24 @@
+{{- if and .Values.global.pages.enabled .Values.metrics.enabled .Values.metrics.serviceMonitor.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-metrics
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "gitlab.standardLabels" . | nindent 4 }}
+    {{- include "gitlab.commonLabels" . | nindent 4 }}
+    {{- include "gitlab.serviceLabels" . | nindent 4 }}
+    gitlab.com/metrics-service: "true"
+  annotations:
+    {{- include "gitlab.serviceAnnotations" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.metrics.port | int }}
+      targetPort: http-metrics
+      protocol: TCP
+      name: http-metrics
+  selector:
+    app: {{ template "name" . }}
+    release: {{ .Release.Name }}
+{{- end -}}

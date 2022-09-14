@@ -1,0 +1,9 @@
+apiVersion: v1
+appVersion: "4.2"
+description: Validation of best practices in your Kubernetes clusters
+icon: https://raw.githubusercontent.com/FairwindsOps/polaris/master/pkg/dashboard/assets/favicon-32x32.png
+maintainers:
+- email: robertb@fairwinds.com
+  name: rbren
+name: polaris
+version: 4.2.1

@@ -1,0 +1,8 @@
+{{ $sharedSecretValues := index .Values "shared-secrets" }}
+{{- if and $sharedSecretValues.enabled $sharedSecretValues.rbac.create (not .Values.global.operator.enabled) -}}
+{{ include (print $.Template.BasePath "/shared-secrets/_rbac-serviceaccount.yaml") . }}
+---
+{{ include (print $.Template.BasePath "/shared-secrets/_rbac-role.yaml") . }}
+---
+{{ include (print $.Template.BasePath "/shared-secrets/_rbac-rolebinding.yaml") . }}
+{{- end}}

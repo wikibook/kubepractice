@@ -1,0 +1,13 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: wordpress-namespace-full-access-rb
+  namespace: wordpress
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: wordpress-namespace-full-access
+subjects:
+- kind: ServiceAccount
+  name: wordpress-sa
+  namespace: wordpress

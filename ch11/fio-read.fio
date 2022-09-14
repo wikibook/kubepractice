@@ -1,0 +1,15 @@
+[global]
+ioengine=libaio
+direct=1
+bs=4k
+runtime=120
+time_based=1
+iodepth=16
+numjobs=4
+# numjobs=16
+size=1g
+group_reporting
+rw=randrw
+rwmixread=100
+rwmixwrite=0
+[read]

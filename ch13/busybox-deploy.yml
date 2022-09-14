@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+  labels:
+    app: busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox  # POD label과 일치
+  template:    
+    metadata:
+      labels:
+        app: busybox # Selector label과 일치
+    spec:
+      containers:
+      - name: busybox
+        # image: busybox
+        image: harbor.myweb.io/erp/busybox:0.1
+        command:
+        - "/bin/sh"
+        - "-c"
+        - "sleep inf"

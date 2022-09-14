@@ -1,0 +1,42 @@
+{{- $sharedSecretEnabled := index .Values "shared-secrets" "enabled" -}}
+{{- if $sharedSecretEnabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "shared-secrets.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "gitlab.standardLabels" . | nindent 4 }}
+    {{- include "gitlab.commonLabels" . | nindent 4 }}
+{{- if not .Values.global.operator.enabled }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "-3"
+    "helm.sh/hook-delete-policy": hook-succeeded,before-hook-creation
+{{- end }}
+data:
+  generate-secrets: |
+    {{- include (print $.Template.BasePath "/shared-secrets/_generate_secrets.sh.tpl") . | nindent 4 }}
+---
+{{ if .Values.global.operator.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-shared-secrets-jobspec
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "gitlab.standardLabels" . | nindent 4 }}
+    {{- include "gitlab.commonLabels" . | nindent 4 }}
+data:
+  template: |-
+    {{- include (print $.Template.BasePath "/shared-secrets/_jobspec.yaml") . | nindent 4 }}
+  role: |-
+    {{- include (print $.Template.BasePath "/shared-secrets/_rbac-role.yaml") . | nindent 4 }}
+  serviceAccount: |-
+    {{- include (print $.Template.BasePath "/shared-secrets/_rbac-serviceaccount.yaml") . | nindent 4 }}
+  roleBinding: |-
+    {{- include (print $.Template.BasePath "/shared-secrets/_rbac-rolebinding.yaml") . | nindent 4 }}
+  selfSignedCertTemplate: |-
+    {{- include (print $.Template.BasePath "/shared-secrets/_self-signed-cert-job.yml") . | nindent 4 }}
+{{- end -}}
+{{- end -}}

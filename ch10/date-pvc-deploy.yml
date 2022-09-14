@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: date-pod
+  namespace: default
+  labels:
+    app: date
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: date
+  template:    
+    metadata:
+      labels:
+        app: date
+    spec:
+      containers:
+      - name: date-pod
+        image: busybox
+        command:
+        - "/bin/sh"
+        - "-c"
+        - "while true; do date >> /data/pod-out.txt; cd /data; sync; sync; sleep 30; done"
+        volumeMounts:  
+        - name: date-vol  # Volume 이름
+          mountPath: /data  # Mount 이름 
+      volumes:  # 어떤 Volume을 사용할 것인지
+      - name: date-vol
+        persistentVolumeClaim:
+          claimName: default-pvc

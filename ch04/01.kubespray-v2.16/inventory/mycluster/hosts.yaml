@@ -1,0 +1,30 @@
+all:
+  hosts:
+    ubun20-1:
+      ansible_host: ubun20-1  # 각 개인 별 설정한 호스트네임으로 변경합니다.
+    ubun20-2:
+      ansible_host: ubun20-2
+    ubun20-3:
+      ansible_host: ubun20-3
+  children:
+    kube-master:  # 1. 마스터 노드
+      hosts:
+        ubun20-1:
+        ubun20-2:
+        ubun20-3:
+    kube-node:  # 2. 워커 노드 
+      hosts:
+        ubun20-1:
+        ubun20-2:
+        ubun20-3:
+    etcd:  # 3. Etcd 데이터베이스 노드
+      hosts:
+        ubun20-1:
+        ubun20-2:
+        ubun20-3:
+    k8s-cluster:
+      children:
+        kube-master:
+        kube-node:
+    calico-rr:  #  4. 쿠버네티스 네트워크 칼리코(Calico) 사용
+      hosts: {}

@@ -1,0 +1,4 @@
+{{ $sharedSecretEnabled := index .Values "shared-secrets" "enabled" }}
+{{- if and $sharedSecretEnabled (not .Values.global.operator.enabled) }}
+{{ include (print $.Template.BasePath "/shared-secrets/_jobspec.yaml") . }}
+{{- end }}

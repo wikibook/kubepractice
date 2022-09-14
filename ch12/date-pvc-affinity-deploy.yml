@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: date-pod01
+  namespace: default
+  labels:
+    app: date
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: date
+  template:    
+    metadata:
+      labels:
+        app: date
+    spec:
+      affinity:
+        podAntiAffinity: ## POD 할당되지 않은 Node로 Scheduling
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app  ## Key 선택
+                operator: In
+                values:
+                - date
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: date-pod
+        image: busybox
+        command:
+        - "/bin/sh"
+        - "-c"
+        - "while true; do date >> /data/pod-out.txt; sleep 30; done"
+        volumeMounts:  
+        - name: date-vol 
+          mountPath: /data   
+      volumes: 
+      - name: date-vol
+        persistentVolumeClaim:
+          claimName: default-pvc   

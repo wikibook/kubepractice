@@ -1,0 +1,49 @@
+{{- if .Values.global.operator.enabled }}
+{{- $imageCfg := dict "global" .Values.global.image "local" .Values.image -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "gitlab.standardLabels" . | nindent 4 }}
+    {{- include "gitlab.commonLabels" . | nindent 4 }}
+  annotations:
+    {{- include "gitlab.deploymentAnnotations" . | nindent 4 }}
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate: null
+    type: Recreate
+  selector:
+    matchLabels:
+      component: operator
+      {{- include "gitlab.immutableLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        component: operator
+        {{- include "gitlab.immutableLabels" . | nindent 8 }}
+        {{- include "gitlab.podLabels" . | nindent 8 }}
+    spec:
+      {{- include "gitlab.nodeSelector" . | nindent 6 }}
+      {{- if .Values.tolerations }}
+      tolerations:
+        {{- toYaml .Values.tolerations | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ template "fullname" . }}
+      {{- include "gitlab.image.pullSecrets" $imageCfg | indent 6 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ coalesce .Values.image.tag (include "gitlab.operator.parseVersion" .Values.version ) }}"
+          env:
+          - name: GITLAB_CLASS
+            value: {{ .Release.Name }}
+          {{- if .Values.crdPrefix }}
+          - name: CRD_PREFIX
+            value: {{ .Values.crdPrefix }}
+          {{- end }}
+          {{- include "gitlab.image.pullPolicy" $imageCfg | indent 10 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+{{- end }}

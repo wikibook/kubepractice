@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  # namespace: nginx
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    # app: nginx-hello
+    app: nginx
+  sessionAffinity: None
+  type: LoadBalancer
