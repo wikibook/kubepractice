@@ -1,0 +1,12 @@
+/.vscode/
+/.work
+/.cache
+/.idea
+
+/_output
+
+/tests/integration/rook-test/
+
+# OLM related stuff
+deploy/olm/deploy/*
+deploy/olm/templates/*

@@ -1,0 +1,25 @@
+#################################################################################################################
+# Create an object store user for access to the s3 endpoint.
+#  kubectl create -f object-user.yaml
+#################################################################################################################
+
+apiVersion: ceph.rook.io/v1
+kind: CephObjectStoreUser
+metadata:
+  name: my-user
+  namespace: rook-ceph # namespace:cluster
+spec:
+  store: my-store
+  displayName: "my display name"
+  # Quotas set on the user
+  # quotas:
+     # maxBuckets: 100
+     # maxSize: 10G
+     # maxObjects: 10000
+  # Additional permissions given to the user
+  # capabilities:
+     # user: "*"
+     # bucket: "*"
+     # metadata: "*"
+     # usage: "*"
+     # zone: "*"

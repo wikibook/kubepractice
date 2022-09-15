@@ -1,0 +1,197 @@
+pull_request_rules:
+  # if there is a conflict in a backport PR, ping the author to send a proper backport PR
+  - name: ping author on conflicts
+    conditions:
+      - conflict
+    actions:
+      comment:
+        message: This pull request has merge conflicts that must be resolved before it can be merged. @{{author}} please rebase it. https://rook.io/docs/rook/latest/development-flow.html#updating-your-fork
+
+  - name: ping author on direct push to release branch
+    conditions:
+      - base~=^release-
+      - author!=mergify[bot]
+    actions:
+      comment:
+        message: Hi @{{author}}, this pull request was opened against a release branch, is it expected? Normally patches should go in the master branch first and then be backported to release branches.
+
+  # automerge on master only under certain strict conditions
+  - name: automerge merge master with specific label and approvals with code change
+    conditions:
+      - author=mergify[bot]
+      - base=master
+      - "#approved-reviews-by>=1"
+      - "#changes-requested-reviews-by=0"
+      - label!=do-not-merge
+      - label=ready-to-merge
+      - 'check-success=DCO'
+      - 'check-success=canary'
+      - 'check-success=unittests'
+      - 'check-success=golangci-lint'
+      - 'check-success=codegen'
+      - 'check-success=lint'
+      - 'check-success=modcheck'
+      - 'check-success=pvc'
+      - 'check-success=pvc-db'
+      - 'check-success=pvc-db-wal'
+      - 'check-success=encryption-pvc'
+      - 'check-success=encryption-pvc-db'
+      - 'check-success=encryption-pvc-db-wal'
+      - 'check-success=encryption-pvc-kms-vault-token-auth'
+      - 'check-success=TestCephSmokeSuite'
+      - 'check-success=TestCephHelmSuite'
+      - 'check-success=TestCephMultiClusterDeploySuite'
+      - 'check-success=TestCephUpgradeSuite'
+      - 'check-success=TestCephObjectSuite'
+    actions:
+      merge:
+        method: merge
+      dismiss_reviews: {}
+      delete_head_branch: {}
+
+  - name: automerge merge master with specific label and approvals without code change
+    conditions:
+      - author=mergify[bot]
+      - base=master
+      - "#approved-reviews-by>=1"
+      - "#changes-requested-reviews-by=0"
+      - label!=do-not-merge
+      - label=ready-to-merge
+      - 'check-success=lint'
+      - 'check-success=DCO'
+      - 'check-success=build'
+    actions:
+      merge:
+        method: merge
+      dismiss_reviews: {}
+      delete_head_branch: {}
+
+  # release-1.6 branch
+  - name: automerge backport release-1.6
+    conditions:
+      - author=mergify[bot]
+      - base=release-1.6
+      - label!=do-not-merge
+      - 'status-success=DCO'
+      - 'check-success=canary'
+      - 'check-success=unittests'
+      - 'check-success=golangci-lint'
+      - 'check-success=codegen'
+      - 'check-success=lint'
+      - 'check-success=modcheck'
+      - 'check-success=pvc'
+      - 'check-success=pvc-db'
+      - 'check-success=pvc-db-wal'
+      - 'check-success=encryption-pvc'
+      - 'check-success=encryption-pvc-db'
+      - 'check-success=encryption-pvc-db-wal'
+      - 'check-success=encryption-pvc-kms-vault-token-auth'
+      - 'check-success=TestCephSmokeSuite (v1.16.15)'
+      - 'check-success=TestCephSmokeSuite (v1.21.0)'
+      - 'check-success=TestCephHelmSuite (v1.16.15)'
+      - 'check-success=TestCephHelmSuite (v1.22.0)'
+      - 'check-success=TestCephMultiClusterDeploySuite (v1.21.0)'
+      - 'check-success=TestCephUpgradeSuite (v1.16.15)'
+      - 'check-success=TestCephUpgradeSuite (v1.21.0)'
+    actions:
+      merge:
+        method: merge
+      dismiss_reviews: {}
+      delete_head_branch: {}
+
+  # release-1.7 branch
+  - name: automerge backport release-1.7
+    conditions:
+      - author=mergify[bot]
+      - base=release-1.7
+      - label!=do-not-merge
+      - 'status-success=DCO'
+      - 'check-success=canary'
+      - 'check-success=unittests'
+      - 'check-success=golangci-lint'
+      - 'check-success=codegen'
+      - 'check-success=lint'
+      - 'check-success=modcheck'
+      - 'check-success=pvc'
+      - 'check-success=pvc-db'
+      - 'check-success=pvc-db-wal'
+      - 'check-success=encryption-pvc'
+      - 'check-success=encryption-pvc-db'
+      - 'check-success=encryption-pvc-db-wal'
+      - 'check-success=encryption-pvc-kms-vault-token-auth'
+      - 'check-success=TestCephSmokeSuite (v1.15.12)'
+      - 'check-success=TestCephSmokeSuite (v1.21.0)'
+      - 'check-success=TestCephHelmSuite (v1.15.12)'
+      - 'check-success=TestCephHelmSuite (v1.21.0)'
+      - 'check-success=TestCephMultiClusterDeploySuite (v1.21.0)'
+      - 'check-success=TestCephUpgradeSuite (v1.15.12)'
+      - 'check-success=TestCephUpgradeSuite (v1.21.0)'
+    actions:
+      merge:
+        method: merge
+      dismiss_reviews: {}
+      delete_head_branch: {}
+
+  # release-1.8 branch
+  - name: automerge backport release-1.8
+    conditions:
+      - author=mergify[bot]
+      - base=release-1.8
+      - label!=do-not-merge
+      - 'status-success=DCO'
+      - 'check-success=canary'
+      - 'check-success=unittests'
+      - 'check-success=golangci-lint'
+      - 'check-success=codegen'
+      - 'check-success=lint'
+      - 'check-success=modcheck'
+      - 'check-success=pvc'
+      - 'check-success=pvc-db'
+      - 'check-success=pvc-db-wal'
+      - 'check-success=encryption-pvc'
+      - 'check-success=encryption-pvc-db'
+      - 'check-success=encryption-pvc-db-wal'
+      - 'check-success=encryption-pvc-kms-vault-token-auth'
+      - 'check-success=encryption-pvc-kms-vault-k8s-auth'
+      - 'check-success=lvm-pvc'
+      - 'check-success=multi-cluster-mirroring'
+      - 'check-success=rgw-multisite-testing'
+      - 'check-success=TestCephSmokeSuite (v1.16.15)'
+      - 'check-success=TestCephSmokeSuite (v1.22.2)'
+      - 'check-success=TestCephHelmSuite (v1.16.15)'
+      - 'check-success=TestCephHelmSuite (v1.22.2)'
+      - 'check-success=TestCephMultiClusterDeploySuite (v1.22.2)'
+      - 'check-success=TestCephUpgradeSuite (v1.16.15)'
+      - 'check-success=TestCephUpgradeSuite (v1.22.2)'
+    actions:
+      merge:
+        method: merge
+      dismiss_reviews: {}
+      delete_head_branch: {}
+
+  # release-1.6 branch
+  - actions:
+      backport:
+        branches:
+          - release-1.6
+    conditions:
+      - label=backport-release-1.6
+    name: backport release-1.6
+
+  # release-1.7 branch
+  - actions:
+      backport:
+        branches:
+          - release-1.7
+    conditions:
+      - label=backport-release-1.7
+    name: backport release-1.7
+
+  # release-1.8 branch
+  - actions:
+      backport:
+        branches:
+          - release-1.8
+    conditions:
+      - label=backport-release-1.8
+    name: backport release-1.8

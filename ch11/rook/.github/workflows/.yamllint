@@ -1,0 +1,11 @@
+extends: default
+ignore: |
+  deploy/examples/csi/template
+  deploy/examples/crds.yaml
+  deploy/examples/monitoring/
+rules:
+  line-length: disable
+  new-lines: disable
+  document-start: disable
+  comments: disable
+  truthy: disable

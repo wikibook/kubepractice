@@ -1,0 +1,29 @@
+# Code ownership file that specifies maintainers and reviewers for all areas of the Rook codebase.
+# all: These members have the given role for all areas of the codebase.
+# Specific storage provider ownership and covers all portions of code that is specific to their project.
+# Maintainers have push access to merge PRs after approved by another maintainer or reviewer.
+# With the intention of using the Prow bot in the future, the term "approver" is used below.
+# An approver is equivalent to a Rook maintainer for all intents and purposes as described in the Rook governance.
+
+areas:
+  all:
+    approvers:
+    - travisn
+    - galexrt
+    - jbw976
+  ceph:
+    approvers:
+    - travisn
+    - BlaineEXE
+    - leseb
+    - satoru-takeuchi
+    reviewers:
+    - Madhu-1
+    - sp98
+    - subhamkrai
+  cassandra:
+    approvers:
+    - yanniszark
+  nfs:
+    reviewers:
+    - rohan47
