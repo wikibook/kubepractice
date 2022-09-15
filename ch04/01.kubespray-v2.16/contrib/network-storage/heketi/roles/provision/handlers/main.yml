@@ -1,3 +1,0 @@
----
-- name: "stop port forwarding"
-  command: "killall "

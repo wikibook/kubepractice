@@ -1,8 +1,0 @@
----
-- import_tasks: check.yml
-
-- import_tasks: pre.yml
-
-- import_tasks: repos.yml
-
-- include_tasks: install.yml
