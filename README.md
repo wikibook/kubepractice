@@ -25,3 +25,11 @@
  - [교보문고](https://product.kyobobook.co.kr/detail/S000200152893)
  - [인터파크](https://book.interpark.com/product/BookDisplay.do?_method=detail&sc.prdNo=355889205)
  - [알라딘](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=304282680)
+
+---
+
+## 본문 URL
+
+본문에 등장하는 URL을 입력 및 참고할 수 있도록 다음 파일에 정리했습니다.
+
+- [URL 목록](urls.md)
