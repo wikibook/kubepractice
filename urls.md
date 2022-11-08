@@ -1,0 +1,568 @@
+- v쪽
+	- <https://github.com/wikibook/kubepractice>
+	- <https://github.com/junghoon2/kube-books>
+	- <https://github.com/wikibook/kubepractice/tree/main/ch01>
+- vi쪽
+	- <https://jerryljh.tistory.com/>
+- vii쪽
+	- <https://www.virtualbox.org/>
+	- <https://github.com/kubernetes-sigs/kubespray#supported-linux-distributions>
+	- <https://kubernetes.io/ko/docs/setup/production-environment/tools/kubespray/>
+- viii쪽
+	- <https://releases.ubuntu.com/20.04/>
+	- <https://en.wikipedia.org/wiki/Ceph_(software)>
+- xix
+	- <https://docs.microsoft.com/ko-kr/windows/wsl/install-win10>
+	- <https://docs.microsoft.com/ko-kr/windows/terminal/install>
+	- <https://www.lainyzine.com/ko/article/how-to-install-wsl2-and-use-linux-on-windows-10/>
+	- <https://iterm2.com/>
+	- <https://www.lainyzine.com/ko/article/how-to-install-wsl2-and-use-linux-on-windows-10/>
+- 2쪽
+	- <https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/>
+	- <https://kubernetes.io/docs/concepts/architecture/controller/#desired-vs-current>
+- 4쪽
+	- <https://kubernetes.io/docs/concepts/workloads/pods/#what-is-a-pod>
+- 5쪽
+	- <https://unsplash.com/>
+	- <https://traefik.io/blog/pets-vs-cattle-the-future-of-kubernetes-in-2022>
+- 6쪽
+	- <https://aws.amazon.com/ko/ec2/spot/>
+- 7쪽
+	- <https://youtu.be/DVgsrrfU9Wc>
+	- <https://github.com/wikibook/kubepractice/tree/main/ch01/>
+- 8쪽
+	- <https://www.ansible.com/>
+	- <https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/>
+- 9쪽
+	- <https://github.com/kubernetes-sigs/kubespray.git>
+	- <https://github.com/kubernetes-sigs/kubespray.git>
+	- <https://github.com/kubernetes-sigs/kubespray>
+- 10쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch01/kubespray-v2.19.0/inventory/mycluster/hosts.yml>
+- 11쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch01/kubespray-v2.19.0/inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml>
+- 14쪽
+	- <https://wikibook.co.kr/support/contact/>
+	- <https://github.com/kubernetes-sigs/kubespray/blob/master/docs/offline-environment.md>
+- 15쪽
+	- <https://get.k3s.io>
+	- <https://k3s.io/>
+- 16쪽
+	- <https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux>
+	- <https://youtu.be/We8JKbNQeLo>
+	- <https://iterm2.com/>
+- 20쪽
+	- <https://youtu.be/DVgsrrfU9Wc>
+- 22쪽
+	- <https://bit.ly/3oTA3Vd>
+	- <https://kubernetes.io/ko/docs/concepts/overview/kubernetes-api/>
+- 23쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch02/>
+	- <https://en.wikipedia.org/wiki/Run_commands>
+	- <https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#kubeconfig>
+- 24쪽
+	- <https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/>
+	- <https://kubernetes.io/ko/docs/tasks/tools/included/optional-kubectl-configs-zsh/>
+- 25쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch02/alias>
+- 26쪽
+	- <https://github.com/ahmetb/kubectl-aliases>
+	- <https://krew.sigs.k8s.io/>
+- 27쪽
+	- <https://krew.sigs.k8s.io/docs/user-guide/setup/install/>
+- 28쪽
+	- <https://www.cncf.io/kubeweekly/>
+- 29쪽
+	- <https://github.com/ahmetb/kubectx>
+- 30쪽
+	- <https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/>
+- 32쪽
+	- <https://github.com/jonmosco/kube-ps1>
+- 35쪽
+	- <https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/>
+- 36쪽
+	- <https://kubernetes.io/docs/concepts/workloads/pods/>
+	- <https://en.wikipedia.org/wiki/Point_of_delivery_(networking)>
+- 40쪽
+	- <https://kubernetes.io/docs/concepts/workloads/controllers/deployment/>
+- 44쪽
+	- <https://kubernetes.io/docs/concepts/configuration/secret/>
+- 46쪽
+	- <https://kubernetes.io/docs/concepts/services-networking/network-policies/>
+- 49쪽
+	- <https://ko.wikipedia.org/wiki/YAML>
+	- <https://stackoverflow.com/questions/52309496/difference-between-kubernetes-objects-and-resources>
+- 50쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch04>
+	- <https://github.com/itaysk/kubectl-neat>
+- 53쪽
+	- <https://stackoverflow.com/questions/47369351/kubectl-apply-vs-kubectl-create>
+- 54쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch04/busybox-pod.yml>
+	- <https://code.visualstudio.com/download>
+- 55쪽
+	- <https://kubernetes.io/docs/home/>
+- 56쪽
+	- <https://kubernetes.io/ko/blog/2021/08/04/kubernetes-1-22-release-announcement/>
+	- <https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service>
+	- <https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#required-fields>
+- 60쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch05>
+	- <https://kubernetes.io/docs/tasks/debug-application-cluster/>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch05/nginx-error-pod.yml>
+- 62쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch05/nginx-modify-pod.yml>
+- 63쪽
+	- <https://12factor.net/logs>
+- 65쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch05/busybox-deploy.yml>
+- 68쪽
+	- <https://kubernetes.io/docs/reference/using-api/api-concepts/>
+- 69쪽
+	- <https://thenewstack.io/how-to-treat-your-kubernetes-clusters-like-cattle-not-pets/>
+- 72쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch06>
+	- <https://helm.sh/ko/docs/topics/charts/>
+	- <https://helm.sh/docs/topics/charts/#the-chart-file-structure>
+- 73쪽
+	- <https://artifacthub.io/>
+	- <https://whatis.techtarget.com/definition/template>
+	- <https://helm.sh/docs/chart_template_guide/values_files/>
+- 75쪽
+	- <https://helm.sh/docs/intro/install/>
+- 80쪽
+	- <https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/>
+- 81쪽
+	- <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#how-pods-with-resource-requests-are-scheduled>
+- 82쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch06/mem-limits01-pod.yml>
+- 83쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch06/mem-requests01-pod.yml>
+- 84쪽
+	- <https://raw.githubusercontent.com/wikibook/kubepractice/main/ch06/mem-stress-pod.yml>
+- 90쪽
+	- <https://kubernetes.io/docs/concepts/services-networking/service/#motivation>
+- 91쪽
+	- <https://en.wikipedia.org/wiki/Service_discovery>
+	- <https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types>
+- 92쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch07>
+	- <https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/>
+- 93쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch07/nginx-deploy.yml>
+- 94쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch07/nginx-ClusterIP-svc.yml>
+- 95쪽
+	- <https://stackoverflow.com/questions/52857825/what-is-an-endpoint-in-kubernetes>
+- 102쪽
+	- <https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/>
+	- <https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/>
+- 103쪽
+	- <https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#namespaces-of-services>
+- 106쪽
+	- <https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport>
+- 107쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch07/nginx-nodeport-svc.yml>
+- 109쪽
+	- <https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types>
+- 111쪽
+	- <https://en.wikipedia.org/wiki/Proxy_server>
+	- <https://kubernetes.io/docs/concepts/overview/components/#kube-proxy>
+	- <https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-ipvs>
+	- <https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-ipvs>
+- 116쪽
+	- <https://metallb.universe.tf/>
+	- <https://porter.sh/install/>
+	- <https://landscape.cncf.io/>
+- 117쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch08>
+	- <https://youtu.be/jNr4I7KmSi4>
+- 118쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch08/metallb-0.12.1/my-values.yaml>
+	- <https://metallb.universe.tf/concepts/layer2/>
+- 119쪽
+	- <https://github.com/dockersamples/example-voting-app>
+- 121쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch08/example-voting-app/k8s-specifications/vote-service.yaml>
+- 123쪽
+	- <https://theiconic.tech/tail-logs-from-multiple-kubernetes-pods-the-easy-way-71401b84d7f>
+	- <https://github.com/johanhaleby/kubetail>
+- 125쪽
+	- <https://en.wikipedia.org/wiki/Address_Resolution_Protocol>
+- 128쪽
+	- <https://jmeter.apache.org/>
+	- <https://locust.io/>
+	- <https://k6.io/>
+- 129쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch08/k6-http.js>
+- 131쪽
+	- <https://metallb.universe.tf/concepts/bgp/#load-balancing-behavior>
+- 133쪽
+	- <https://kubernetes.io/docs/concepts/services-networking/ingress/>
+	- <https://en.wikipedia.org/wiki/Multilayer_switch>
+- 134쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch09>
+	- <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>
+- 135쪽
+	- <https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-helm-chart>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch09/traefik-10.21.1/my-values.yaml>
+- 136쪽
+	- <https://github.com/traefik/traefik-helm-chart/issues/468>
+- 138쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch09/cafe-svc-deploy.yml>
+- 140쪽
+	- <https://github.com/wikibook/kubepractice.git>
+- 142쪽
+	- <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch09/cafe-crd-ingressroute.yml>
+- 143쪽
+	- <https://doc.traefik.io/traefik/routing/entrypoints/#entrypoints>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch09/cafe-crd-ingressroute.yml>
+- 144쪽
+	- <https://doc.traefik.io/traefik/https/acme/#lets-encrypt>
+- 149쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch09/cafe-tls-crd-ingressroute.yml>
+- 150쪽
+	- <https://ldne.tistory.com/240>
+- 151쪽
+	- <https://doc.traefik.io/traefik/providers/kubernetes-crd/>
+- 152쪽
+	- <https://kubernetes.io/docs/concepts/storage/volumes/>
+- 153쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch10>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch10/date-busybox-pod.yml>
+- 156쪽
+	- <https://ceph.io/en/discover/technology/>
+	- <https://www.gluster.org/>
+	- <https://openebs.io/>
+	- <https://docs.openebs.io/docs/next/uglocalpv-hostpath.html>
+- 158쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch10/date-pvc.yml>
+- 159쪽
+	- <https://kubernetes.io/docs/concepts/storage/persistent-volumes/>
+- 160쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch10/date-pvc-deploy.yml>
+- 164쪽
+	- <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming>
+- 166쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch10/mysql-9.1.0/my-values.yaml>
+- 170쪽
+	- <https://kubestr.io/>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch10/fio-read.fio>
+- 171쪽
+	- <https://www.cncf.io/blog/2021/04/05/kubernetes-storage-options-can-be-overwhelming-pick-the-right-one/>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch10/date-pvc.yml>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch10/date-pvc-deploy.yml>
+- 175쪽
+	- <https://searchdatabackup.techtarget.com/definition/storage-snapshot>
+	- <https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/>
+	- <https://www.redhat.com/en/topics/containers/what-is-a-kubernetes-operator>
+- 176쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch11>
+	- <https://rook.io/>
+- 178쪽
+	- <https://rook.io/docs/rook/v1.9/quickstart.html>
+- 179쪽
+	- <https://rook.io/docs/rook/v1.9/ceph-toolbox.html>
+- 180쪽
+	- <https://rook.io/docs/rook/v1.9/ceph-block.html>
+	- <https://github.com/kubernetes-csi/external-snapshotter/tree/v4.0.0#usage>
+- 181쪽
+	- <https://rook.io/docs/rook/v1.9/ceph-csi-snapshot.html>
+- 182쪽
+	- <https://ko.wordpress.org/>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch11/wordpress.yaml>
+- 183쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch11/mysql.yaml>
+- 187쪽
+	- <https://kubernetes.io/docs/concepts/storage/volume-snapshots/#introduction>
+- 188쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch11/mysql-pvc-snapshot.yml>
+- 190쪽
+	- <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-snapshot-and-restore-volume-from-snapshot-support>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch11/snap-restore-pvc.yml>
+- 194쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch11/fio-read.fio>
+- 196쪽
+	- <https://www.redhat.com/ko/topics/data-storage/file-block-object-storage>
+- 198쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch12>
+	- <https://rook.io/docs/rook/v1.9/ceph-filesystem-crd.html>
+	- <https://rook.io/docs/rook/v1.9/ceph-filesystem.html>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/ceph-filesystem.yml>
+- 200쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/ceph-file-sc.yml>
+- 201쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/default-pvc.yml>
+	- <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/date-pvc-deploy.yml>
+- 203쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/date-pvc-affinity-deploy.yml>
+- 204쪽
+	- <https://www.backblaze.com/blog/whats-the-diff-nas-vs-san/>
+- 205쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/cephfs-pvc.yml>
+	- <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes>
+- 206쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/busybox-pvc-deploy.yml>
+- 209쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/nginx-homedirectory-deploy.yml>
+- 210쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/nginx-loadBalancer-svc.yml>
+- 212쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/cephfs-pvc.yml>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch12/busybox-pvc-deploy.yml>
+- 213쪽
+	- <https://rook.io/docs/rook/v1.9/ceph-teardown.html>
+- 215쪽
+	- <https://docs.microsoft.com/ko-kr/azure/container-registry/container-registry-concepts>
+	- <https://en.wikipedia.org/wiki/Continuous_integration>
+- 216쪽
+	- <https://www.docker.com/increase-rate-limits>
+	- <https://goharbor.io/>
+	- <https://www.cncf.io/news/2020/06/26/containerjournal-cncf-graduates-harbor-container-registry/>
+- 217쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch13>
+- 218쪽
+	- <https://github.com/goharbor/harbor-helm>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch13/harbor-1.9.1/my-values.yaml>
+- 221쪽
+	- <https://github.com/goharbor/harbor/wiki/Architecture-Overview-of-Harbor>
+	- <https://goharbor.io/docs/1.10/working-with-projects/project-configuration/implementing-content-trust/>
+- 222쪽
+	- <https://goharbor.io/docs/2.0.0/working-with-projects/create-projects/>
+- 223쪽
+	- <https://podman.io/getting-started/installation>
+- 225쪽
+	- <https://docs.docker.com/registry/insecure/>
+- 228쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch13/busybox-deploy.yml>
+- 230쪽
+	- <https://www.bespinglobal.com/byline-200730/>
+	- <https://aquasecurity.github.io/trivy/v0.17.0/>
+- 233쪽
+	- <https://goharbor.io/docs/1.10/working-with-projects/project-configuration/implementing-content-trust/>
+- 236쪽
+	- <https://insight.infograb.net/docs/about/gitlab_introduction>
+- 237쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch14>
+	- <https://about.gitlab.com/install/>
+- 239쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch14/gitlab-6.0.3/my-values.yaml>
+	- <https://docs.gitlab.com/charts/>
+- 241쪽
+	- <https://docs.gitlab.com/ee/development/architecture.html>
+- 242쪽
+	- <https://github.com/elsesiy/kubectl-view-secret>
+- 251쪽
+	- <https://www.lesstif.com/gitbook/git-https-repository-ssl-14090808.html>
+- 254쪽
+	- <https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html>
+- 256쪽
+	- <https://www.redhat.com/ko/topics/devops/what-is-ci-cd>
+- 257쪽
+	- <https://coffeewhale.com/kubernetes/gitops/argocd/2020/02/10/gitops-argocd/>
+- 258쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch15>
+- 259쪽
+	- <https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch15/argo-cd-4.9.4/my-values.yaml>
+- 260쪽
+	- <https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/>
+- 261쪽
+	- <https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/#components>
+- 262쪽
+	- <https://argo-cd.readthedocs.io/en/stable/cli_installation/>
+- 263쪽
+	- <https://argo-cd.readthedocs.io/en/stable/getting_started/>
+- 266쪽
+	- <https://www.rabbitmq.com/>
+- 267쪽
+	- <https://argo-cd.readthedocs.io/en/stable/core_concepts/>
+- 268쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch15/rabbitmq-helm-argo-application.yml>
+	- <https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml>
+- 273쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch15/httpd-deploy.yml>
+- 274쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch15/httpd-nodeport-svc.yml>
+- 276쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch15/httpd-directory-argo-application.yml>
+	- <https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/>
+- 278쪽
+	- <https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#kubectl-edit>
+	- <https://www.alpinelinux.org/>
+- 282쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch15/my-values.yaml>
+- 286쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch16>
+- 287쪽
+	- <https://www.geeksforgeeks.org/top-command-in-linux-with-examples/>
+	- <https://github.com/google/cadvisor>
+	- <https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md>
+	- <https://raw.githubusercontent.com/kubernetes/design-proposals-archive/main/instrumentation/monitoring_architecture.png>
+	- <http://blog.itaysk.com/2019/01/15/Kubernetes-metrics-and-monitoring>
+- 288쪽
+	- <https://github.com/kubernetes-sigs/metrics-server>
+- 289쪽
+	- <https://github.com/kubernetes-sigs/kubespray/blob/master/roles/kubernetes-apps/metrics_server/templates/metrics-server-deployment.yaml.j2>
+	- <https://github.com/kubernetes-sigs/metrics-server/issues/917>
+- 290쪽
+	- <https://github.com/kubernetes-sigs/metrics-server/blob/master/FAQ.md>
+- 292쪽
+	- <https://k9scli.io/>
+- 293쪽
+	- <https://hub.docker.com/r/centos/tools/>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch16/centos-tools-error-deploy.yml>
+- 300쪽
+	- <https://www.cncf.io/announcements/2018/08/09/prometheus-graduates/>
+	- <https://prometheus.io/docs/introduction/overview/#features>
+- 301쪽
+	- <https://prometheus.io/docs/introduction/overview/#what-are-metrics>
+- 302쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch17>
+	- <https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack>
+- 303쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch17/kube-prometheus-stack-36.0.3/my-values.yaml>
+- 305쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch17/kube-prometheus-stack-36.0.3/charts/grafana/values.yaml>
+- 307쪽
+	- <https://prometheus.io/docs/introduction/overview/#architecture>
+	- <https://prometheus.io/docs/alerting/latest/alertmanager/>
+- 308쪽
+	- <https://github.com/kubernetes/kube-state-metrics>
+- 319쪽
+	- <https://github.com/adriankumpf/teslamate>
+	- <https://sre.google/sre-book/monitoring-distributed-systems/#xref_monitoring_golden-signals>
+- 320쪽
+	- <https://grafana.com/docs/grafana/latest/best-practices/best-practices-for-creating-dashboards/#best-practices-to-follow>
+- 321쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch18>
+- 327쪽
+	- <https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/>
+	- <https://grafana.com/grafana/dashboards/>
+- 332쪽
+	- <https://community.grafana.com/t/dashboard-how-to-re-arrange-rows/6080>
+- 333쪽
+	- <https://observability.thomasriley.co.uk/prometheus/configuring-prometheus/using-service-monitors/>
+	- <https://kubernetes.io/docs/concepts/workloads/pods/#how-pods-manage-multiple-containers>
+	- <https://artifacthub.io/packages/helm/bitnami/nginx>
+- 334쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch18/nginx-12.0.4/my-values.yaml>
+- 335쪽
+	- <https://strange-developer.tistory.com/53>
+	- <https://engineering.linecorp.com/ko/blog/immutable-kubernetes-architecture-deepdive/>
+	- <https://sysdig.com/blog/kubernetes-monitoring-prometheus-operator-part3/>
+- 337쪽
+	- <https://github.com/helm/charts/issues/13196>
+- 338쪽
+	- <https://github.com/nginxinc/nginx-prometheus-exporter>
+	- <https://prometheus.io/docs/concepts/metric_types/>
+- 340쪽
+	- <https://www.section.io/blog/prometheus-querying/>
+- 345쪽
+	- <https://slack.com/>
+- 347쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch19>
+- 351쪽
+	- <https://en.wikipedia.org/wiki/Webhook>
+	- <https://grafana.com/blog/2020/02/25/step-by-step-guide-to-setting-up-prometheus-alertmanager-with-slack-pagerduty-and-gmail/>
+- 357쪽
+	- <https://prometheus.io/docs/alerting/latest/configuration/#receiver>
+- 358쪽
+	- <https://giters.com/prometheus-community/helm-charts/issues/1096>
+- 368쪽
+	- <https://awesome-prometheus-alerts.grep.to/>
+- 369쪽
+	- <https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#defining-alerting-rules>
+- 370쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch19/node-exporter-prometheusrules.yaml>
+- 373쪽
+	- <https://en.wikipedia.org/wiki/Loki>
+	- <https://12factor.net/>
+- 374쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch20>
+	- <https://grafana.com/docs/loki/latest/fundamentals/overview/#loki-features>
+- 376쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch20/loki-2.12.2/my-values.yaml>
+- 377쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch20/promtail-6.0.0/my-values.yaml>
+- 386쪽
+	- <https://grafana.com/go/webinar/intro-to-loki-like-prometheus-but-for-logs/>
+- 387쪽
+	- <https://grafana.com/docs/loki/latest/logql/>
+- 393쪽
+	- <https://kubernetes.io/docs/concepts/security/overview/#the-4c-s-of-cloud-native-security>
+- 394쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch21>
+	- <https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/2716980/nsa-cisa-release-kubernetes-hardening-guidance/>
+- 395쪽
+	- <https://github.com/armosec/kubescape>
+	- <https://www.microsoft.com/security/blog/2021/03/23/secure-containerized-environments-with-updated-threat-matrix-for-kubernetes/>
+	- <https://github.com/aquasecurity/kube-bench>
+- 400쪽
+	- <https://www.fairwinds.com/polaris>
+	- <https://ko.wikipedia.org/wiki/>
+	- <https://github.com/bitnami/charts/tree/master/bitnami/redis>
+- 402쪽
+	- <https://polaris.docs.fairwinds.com/dashboard/#installation>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch21/polaris-5.1.0/my-values.yaml>
+- 406쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch21/polaris-dashboard-pod.yaml>
+- 407쪽
+	- <https://polaris.docs.fairwinds.com/checks/reliability/#background>
+	- <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/>
+	- <https://kubesec.io/basics/securitycontext-capabilities/>
+	- <https://snyk.io/blog/10-kubernetes-security-context-settings-you-should-understand/>
+- 408쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch21/redis-16.12.3/my-new-values.yaml>
+- 410쪽
+	- <https://www.openpolicyagent.org/>
+	- <https://kyverno.io/>
+- 411쪽
+	- <https://kubernetes.io/blog/2021/04/15/three-tenancy-models-for-kubernetes/>
+- 412쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch22>
+- 413쪽
+	- <https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch22/full-namespace-role.yml>
+- 414쪽
+	- <https://kubernetes.io/docs/reference/access-authn-authz/authorization/#determine-the-request-verb>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch22/namespace-rolebinding.yml>
+- 416쪽
+	- <https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch22/namespace-sa.yml>
+- 417쪽
+	- <https://itnext.io/big-change-in-k8s-1-24-about-serviceaccounts-and-their-secrets-4b909a4af4e0>
+- 420쪽
+	- <https://kubernetes.io/ko/docs/concepts/configuration/organize-cluster-access-kubeconfig/>
+- 427쪽
+	- <https://github.com/wikibook/kubepractice/tree/main/ch23>
+	- <https://en.wikipedia.org/wiki/Chaos_engineering>
+	- <https://litmuschaos.io/>
+- 428쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch23/guestbook-front.yml>
+- 429쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch23/guestbook-redis.yml>
+- 433쪽
+	- <https://k6.io/>
+	- <https://www.atlassian.com/incident-management/kpis/sla-vs-slo-vs-sli>
+- 434쪽
+	- <https://k6.io/docs/getting-started/installation/>
+	- <https://en.wikipedia.org/wiki/K6_(mountain)>
+- 436쪽
+	- <https://k6.io/docs/using-k6/http-requests/>
+	- <https://github.com/wikibook/kubepractice/blob/main/ch23/stages-k6.js>
+- 437쪽
+	- <https://k6.io/docs/using-k6/http-requests/>
+	- <https://k6.io/docs/using-k6/checks/>
+- 439쪽
+	- <https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/>
+- 449쪽
+	- <https://github.com/kubernetes/autoscaler>
+- 450쪽
+	- <https://github.com/kubernetes-sigs/kubespray/blob/master/docs/nodes.md>
+- 452쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch01/kubespray-v2.19.0/inventory/mycluster/hosts-new01.yml>
+- 455쪽
+	- <https://github.com/wikibook/kubepractice/blob/main/ch01/kubespray-v2.19.0/inventory/mycluster/hosts-new02.yml>
