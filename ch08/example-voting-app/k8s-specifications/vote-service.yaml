@@ -6,6 +6,7 @@ metadata:
   name: vote
   namespace: vote
 spec:
+  # type: NodePort
   type: LoadBalancer
   ports:
   - name: "vote-service"
