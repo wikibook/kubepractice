@@ -1,0 +1,31 @@
+loki:
+  commonConfig:
+    replication_factor: 1
+  auth_enabled: false
+  limits_config:
+    retention_period: 31d
+    max_query_parallelism: 32
+  server:
+    http_server_read_timeout: 600s
+    http_server_write_timeout: 600s
+    grpc_server_max_recv_msg_size: 20971520
+    grpc_server_max_send_msg_size: 20971520
+  storage:
+    type: "filesystem"
+
+monitoring:
+  selfMonitoring:
+    enabled: false
+    grafanaAgent:
+      installOperator: false
+  lokiCanary:
+    enabled: false
+
+test:
+  enabled: false
+
+singleBinary:
+  replicas: 1
+
+gateway:
+  enabled: false
