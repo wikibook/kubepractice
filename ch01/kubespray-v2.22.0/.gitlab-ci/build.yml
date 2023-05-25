@@ -1,0 +1,40 @@
+---
+.build:
+  stage: build
+  image:
+    name: moby/buildkit:rootless
+    entrypoint: [""]
+  variables:
+    BUILDKITD_FLAGS: --oci-worker-no-process-sandbox
+  before_script:
+    - mkdir ~/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > ~/.docker/config.json
+
+pipeline image:
+  extends: .build
+  script:
+    - |
+      buildctl-daemonless.sh build \
+        --frontend=dockerfile.v0 \
+        --local context=. \
+        --local dockerfile=. \
+        --opt filename=./pipeline.Dockerfile \
+        --output type=image,name=$PIPELINE_IMAGE,push=true \
+        --import-cache type=registry,ref=$CI_REGISTRY_IMAGE/pipeline:cache
+  rules:
+    - if: '$CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH'
+
+pipeline image and build cache:
+  extends: .build
+  script:
+    - |
+      buildctl-daemonless.sh build \
+        --frontend=dockerfile.v0 \
+        --local context=. \
+        --local dockerfile=. \
+        --opt filename=./pipeline.Dockerfile \
+        --output type=image,name=$PIPELINE_IMAGE,push=true \
+        --import-cache type=registry,ref=$CI_REGISTRY_IMAGE/pipeline:cache \
+        --export-cache type=registry,ref=$CI_REGISTRY_IMAGE/pipeline:cache,mode=max
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
