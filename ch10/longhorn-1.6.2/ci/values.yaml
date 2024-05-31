@@ -1,0 +1,3 @@
+persistence:
+  # -- Replica count of the default Longhorn StorageClass.
+  defaultClassReplicaCount: 2
