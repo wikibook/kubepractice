@@ -1,3 +1,9 @@
 persistence:
   # -- Replica count of the default Longhorn StorageClass.
   defaultClassReplicaCount: 2
+
+defaultSettings:
+  # -- Default path for storing data on a host. The default value is "/var/lib/longhorn/".
+  defaultDataPath: "/data/longhorn"
+  # -- Default number of replicas for volumes created using the Longhorn UI. For Kubernetes configuration, modify the `numberOfReplicas` field in the StorageClass. The default value is "3".
+  defaultClassReplicaCount: 2
