@@ -1,0 +1,64 @@
+---
+
+.vagrant:
+  extends: .testcases
+  variables:
+    CI_PLATFORM: "vagrant"
+    SSH_USER: "vagrant"
+    VAGRANT_DEFAULT_PROVIDER: "libvirt"
+    KUBESPRAY_VAGRANT_CONFIG: tests/files/${CI_JOB_NAME}.rb
+  tags: [c3.small.x86]
+  only: [/^pr-.*$/]
+  except: ['triggers']
+  image: $PIPELINE_IMAGE
+  services: []
+  before_script:
+    - ./tests/scripts/vagrant_clean.sh
+  script:
+    - ./tests/scripts/testcases_run.sh
+  after_script:
+    - chronic ./tests/scripts/testcases_cleanup.sh
+
+vagrant_ubuntu20-calico-dual-stack:
+  stage: deploy-part2
+  extends: .vagrant
+  when: manual
+# FIXME: this test if broken (perma-failing)
+
+vagrant_ubuntu20-weave-medium:
+  stage: deploy-part2
+  extends: .vagrant
+  when: manual
+
+vagrant_ubuntu20-flannel:
+  stage: deploy-part2
+  extends: .vagrant
+  when: on_success
+  allow_failure: false
+
+vagrant_ubuntu20-flannel-collection:
+  stage: deploy-part2
+  extends: .vagrant
+  when: on_success
+
+vagrant_ubuntu20-kube-router-sep:
+  stage: deploy-part2
+  extends: .vagrant
+  when: manual
+
+# Service proxy test fails connectivity testing
+vagrant_ubuntu20-kube-router-svc-proxy:
+  stage: deploy-part2
+  extends: .vagrant
+  when: manual
+
+vagrant_fedora37-kube-router:
+  stage: deploy-part2
+  extends: .vagrant
+  when: manual
+# FIXME: this test if broken (perma-failing)
+
+vagrant_centos7-kube-router:
+  stage: deploy-part2
+  extends: .vagrant
+  when: manual
