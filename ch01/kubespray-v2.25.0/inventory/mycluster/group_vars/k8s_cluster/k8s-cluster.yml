@@ -126,7 +126,7 @@ kube_proxy_mode: ipvs
 
 # configure arp_ignore and arp_announce to avoid answering ARP queries from kube-ipvs0 interface
 # must be set to true for MetalLB, kube-vip(ARP enabled) to work
-kube_proxy_strict_arp: false
+kube_proxy_strict_arp: true
 
 # A string slice of values which specify the addresses to use for NodePorts.
 # Values may be valid IP blocks (e.g. 1.2.3.0/24, 1.2.3.4/32).
@@ -237,7 +237,7 @@ kubeadm_certificate_key: "{{ lookup('password', credentials_dir + '/kubeadm_cert
 k8s_image_pull_policy: IfNotPresent
 
 # audit log for kubernetes
-kubernetes_audit: false
+kubernetes_audit: true
 
 # define kubelet config dir for dynamic kubelet
 # kubelet_config_dir:
