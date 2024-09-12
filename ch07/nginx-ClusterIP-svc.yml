@@ -4,7 +4,7 @@ metadata:
   name: nginx-svc
   namespace: default
 spec:
-  selector:  # 선택해야 할 POD
+  selector:     # 선택해야 할 POD
     app: nginx  # 파드 Label과 동일
   type: ClusterIP
   ports:
