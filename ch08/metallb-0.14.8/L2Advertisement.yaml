@@ -1,0 +1,27 @@
+# apiVersion: metallb.io/v1beta1
+# kind: L2Advertisement
+# metadata:
+#   name: private
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - private
+#   nodeSelectors:
+#   - matchLabels:
+#       kubernetes.io/hostname: ubun22-01
+#     interfaces:
+#     - ens160
+
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: private
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - private
+  nodeSelectors:
+  - matchLabels:
+      kubernetes.io/hostname: ubun22-01
+  interfaces:
+  - ens160
