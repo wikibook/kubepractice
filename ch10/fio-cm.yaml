@@ -17,5 +17,6 @@ data:
     rw=randrw
     rwmixread=100
     rwmixwrite=0
-    directory=/scratch/
+    # directory=/scratch
+    directory=/var
     [read]
