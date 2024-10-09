@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: fio
+spec:
+  serviceName: fio
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fio
+  template:
+    metadata:
+      labels:
+        app: fio
+    spec:
+      containers:
+      - name: fio
+        image: lfedge/eden-fio-tests:7d7df1b
+        command: 
+        - "/bin/sh"
+        - "-c"
+        - "sleep inf"
+        volumeMounts:
+        - name: fio-config-vol
+          mountPath: /configs
+        - name: fio-data
+          mountPath: /scratch
+      volumes:
+      - name: fio-config-vol
+        configMap:
+          name: fio-job-config
+  volumeClaimTemplates:
+  - metadata:
+      name: fio-data
+    spec:
+      storageClassName: longhorn
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
