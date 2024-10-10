@@ -1,0 +1,16 @@
+wordpressUsername: user
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  ingressClassName: "nginx"
+  hostname: wordpress.myweb.com
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
+  tls: true
+
+mariadb:
+  enabled: true
