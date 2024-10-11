@@ -12,5 +12,12 @@ ingress:
     cert-manager.io/cluster-issuer: "selfsigned-issuer"
   tls: true
 
+persistence:
+  size: 1Gi
+
 mariadb:
   enabled: true
+  primary:
+    persistence:
+      enabled: true
+      size: 5Gi
