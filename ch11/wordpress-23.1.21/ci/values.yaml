@@ -13,11 +13,11 @@ ingress:
   tls: true
 
 persistence:
-  size: 1Gi
+  size: 2Gi
 
 mariadb:
   enabled: true
   primary:
     persistence:
       enabled: true
-      size: 5Gi
+      size: 2Gi
