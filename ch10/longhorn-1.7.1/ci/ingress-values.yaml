@@ -1,0 +1,17 @@
+persistence:
+  # -- Replica count of the default Longhorn StorageClass.
+  defaultClassReplicaCount: 2
+
+defaultSettings:
+  # -- Default number of replicas for volumes created using the Longhorn UI. For Kubernetes configuration, modify the `numberOfReplicas` field in the StorageClass. The default value is "3".
+  defaultReplicaCount: 2
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  host: longhorn.myweb.com
+  tls: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
+
