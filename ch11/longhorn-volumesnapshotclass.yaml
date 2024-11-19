@@ -5,4 +5,6 @@ metadata:
 driver: driver.longhorn.io
 deletionPolicy: Delete
 parameters:
-  type: snap
+  type: bi
+  # export-type default to raw if it is not given
+  export-type: qcow2
