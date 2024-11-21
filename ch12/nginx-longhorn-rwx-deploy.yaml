@@ -17,11 +17,11 @@ spec:
     spec:
       containers:
       - name: web-server
-        image: nginx
+        image: nginx:stable
         volumeMounts:
-          - name: mypvc
+          - name: rwx-pvc
             mountPath: /usr/share/nginx/html
       volumes:
-        - name: mypvc
+        - name: rwx-pvc
           persistentVolumeClaim:
             claimName: longhorn-rwx-pvc
