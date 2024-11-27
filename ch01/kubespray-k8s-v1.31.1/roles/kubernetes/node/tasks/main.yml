@@ -1,0 +1,144 @@
+---
+- name: Fetch facts
+  import_tasks: facts.yml
+  tags:
+    - facts
+    - kubelet
+
+- name: Pre-upgrade kubelet
+  import_tasks: pre_upgrade.yml
+  tags:
+    - kubelet
+
+- name: Ensure /var/lib/cni exists
+  file:
+    path: /var/lib/cni
+    state: directory
+    mode: "0755"
+
+- name: Install kubelet binary
+  import_tasks: install.yml
+  tags:
+    - kubelet
+
+- name: Install kube-vip
+  import_tasks: loadbalancer/kube-vip.yml
+  when:
+    - ('kube_control_plane' in group_names)
+    - kube_vip_enabled
+  tags:
+    - kube-vip
+
+- name: Install nginx-proxy
+  import_tasks: loadbalancer/nginx-proxy.yml
+  when:
+    - ('kube_control_plane' not in group_names) or (kube_apiserver_bind_address != '0.0.0.0')
+    - loadbalancer_apiserver_localhost
+    - loadbalancer_apiserver_type == 'nginx'
+  tags:
+    - nginx
+
+- name: Install haproxy
+  import_tasks: loadbalancer/haproxy.yml
+  when:
+    - ('kube_control_plane' not in group_names) or (kube_apiserver_bind_address != '0.0.0.0')
+    - loadbalancer_apiserver_localhost
+    - loadbalancer_apiserver_type == 'haproxy'
+  tags:
+    - haproxy
+
+- name: Ensure nodePort range is reserved
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_local_reserved_ports
+    value: "{{ kube_apiserver_node_port_range }}"
+    sysctl_set: true
+    sysctl_file: "{{ sysctl_file_path }}"
+    state: present
+    reload: true
+  when: kube_apiserver_node_port_range is defined
+  tags:
+    - kube-proxy
+
+- name: Verify if br_netfilter module exists
+  command: "modinfo br_netfilter"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/sbin"  # Make sure we can workaround RH's conservative path management
+  register: modinfo_br_netfilter
+  failed_when: modinfo_br_netfilter.rc not in [0, 1]
+  changed_when: false
+  check_mode: false
+
+# TODO: Remove once upstream issue is fixed
+# https://github.com/ansible-collections/community.general/issues/7717
+- name: Verify br_netfilter module path exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - /etc/modules-load.d
+    - /etc/modprobe.d
+
+- name: Enable br_netfilter module
+  community.general.modprobe:
+    name: br_netfilter
+    state: present
+  when: modinfo_br_netfilter.rc == 0
+
+- name: Persist br_netfilter module
+  copy:
+    dest: /etc/modules-load.d/kubespray-br_netfilter.conf
+    content: br_netfilter
+    mode: "0644"
+  when: modinfo_br_netfilter.rc == 0
+
+# kube-proxy needs net.bridge.bridge-nf-call-iptables enabled when found if br_netfilter is not a module
+- name: Check if bridge-nf-call-iptables key exists
+  command: "sysctl net.bridge.bridge-nf-call-iptables"
+  failed_when: false
+  changed_when: false
+  check_mode: false
+  register: sysctl_bridge_nf_call_iptables
+
+- name: Enable bridge-nf-call tables
+  ansible.posix.sysctl:
+    name: "{{ item }}"
+    state: present
+    sysctl_file: "{{ sysctl_file_path }}"
+    value: "1"
+    reload: true
+  when: sysctl_bridge_nf_call_iptables.rc == 0
+  with_items:
+    - net.bridge.bridge-nf-call-iptables
+    - net.bridge.bridge-nf-call-arptables
+    - net.bridge.bridge-nf-call-ip6tables
+
+- name: Modprobe Kernel Module for IPVS
+  community.general.modprobe:
+    name: "{{ item }}"
+    state: present
+    persistent: present
+  loop: "{{ kube_proxy_ipvs_modules }}"
+  when: kube_proxy_mode == 'ipvs'
+  tags:
+    - kube-proxy
+
+- name: Modprobe conntrack module
+  community.general.modprobe:
+    name: "{{ item }}"
+    state: present
+    persistent: present
+  register: modprobe_conntrack_module
+  ignore_errors: true  # noqa ignore-errors
+  loop: "{{ conntrack_modules }}"
+  when:
+    - kube_proxy_mode == 'ipvs'
+    - "(modprobe_conntrack_module|default({'rc': 1})).rc != 0"  # loop until first success
+  tags:
+    - kube-proxy
+
+- name: Install kubelet
+  import_tasks: kubelet.yml
+  tags:
+    - kubelet
+    - kubeadm
