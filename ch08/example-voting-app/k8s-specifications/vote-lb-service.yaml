@@ -4,13 +4,13 @@ metadata:
   labels:
     app: vote
   name: vote
+  namespace: vote
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - name: "vote-service"
-    port: 8080
+    port: 80
     targetPort: 80
-    nodePort: 31000
+    # nodePort: 31000
   selector:
     app: vote
-  
