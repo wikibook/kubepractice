@@ -1,22 +1,23 @@
 controller:
   replicaCount: 2
   service:
-    type: NodePort
-    nodePorts:
-      # -- Node port allocated for the external HTTP listener. If left empty, the service controller allocates one from the configured node port range.
-      http: "30020"
-      # -- Node port allocated for the external HTTPS listener. If left empty, the service controller allocates one from the configured node port range.
-      https: "30021"
+    type: LoadBalancer
+    loadBalancerIP: "172.16.224.140"
 
-  # -- Affinity and anti-affinity rules for server scheduling to nodes
-  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
-  ##
   podAntiAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-    - weight: 100
-      podAffinityTerm:
-        labelSelector:
-          matchExpressions:
-          - key: app.kubernetes.io/name
-            operator: In
-            values:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/name
+          operator: In
+          values:
+          - '{{ include "ingress-nginx.name" . }}'
+        - key: app.kubernetes.io/instance
+          operator: In
+          values:
+          - '{{ .Release.Name }}'
+        - key: app.kubernetes.io/component
+          operator: In
+          values:
+          - default-backend
+      topologyKey: kubernetes.io/hostname
