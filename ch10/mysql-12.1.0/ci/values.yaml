@@ -1,0 +1,9 @@
+architecture: replication
+
+primary:
+ persistence:
+  storageClass: "longhorn"
+
+secondary:
+ persistence:
+  storageClass: "longhorn"
