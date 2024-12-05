@@ -16,14 +16,14 @@ spec:
   - host: www.myweb.com
     http:
       paths:
-      - path: /juice
+      - path: /juice-tls
         pathType: Prefix
         backend:
           service:
             name: juice-svc
             port:
               number: 80
-      - path: /water
+      - path: /water-tls
         pathType: Prefix
         backend:
           service:
