@@ -1,0 +1,10 @@
+.DS_Store
+
+# Crash log files
+crash.log
+
+# ignore secrets file
+secret.yaml
+
+# ignore code workspace
+*.code-workspace
