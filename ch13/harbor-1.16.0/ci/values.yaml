@@ -10,7 +10,7 @@ expose:
     className: "nginx"
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
-      nginx.ingress.kubernetes.io/rewrite-target: /
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
       cert-manager.io/cluster-issuer: "selfsigned-issuer"
 
 externalURL: https://harbor.myweb.com
@@ -61,8 +61,6 @@ trivy:
     tag: v2.12.0
 
 database:
-  # if external database is used, set "type" to "external"
-  # and fill the connection information in "external" section
   type: internal
   internal:
     image:
@@ -70,8 +68,6 @@ database:
       tag: v2.12.0
 
 redis:
-  # if external Redis is used, set "type" to "external"
-  # and fill the connection information in "external" section
   type: internal
   internal:
     image:
