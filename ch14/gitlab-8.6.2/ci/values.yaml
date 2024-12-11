@@ -1,8 +1,0 @@
-global:
-  edition: ee
-  hosts:
-    domain: myweb.com
-prometheus:
-  install: false
-gitlab-runner:
-  install: false
