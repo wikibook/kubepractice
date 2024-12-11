@@ -1,0 +1,25 @@
+{{- if .Values.enabled -}}{{/* ENABLED */}}
+{{-   if eq (include "gitlab.ingress.enabled" $) "true" -}}{{/* INGRESS ENABLED */}}
+{{-     include "webservice.datamodel.prepare" $ -}}
+{{-     range $.Values.deployments -}}{{/* RANGE DEPLOYMENTS */}}
+{{/*
+From here on:
+- `.` is `.deployments.xyz` value
+- `.name` is the key (xyz)
+*/}}
+{{-       $global := $.Values.global }}
+{{-       $hostname := $global.hosts.gitlab.hostnameOverride | default (include "gitlab.gitlab.hostname" $) -}}
+{{-       $ingressName := include "webservice.fullname.withSuffix" . -}}
+{{-       $tlsSecret := include "webservice.tlsSecret" (dict "root" $ "local" $.Values.ingress) -}}
+{{-       $ingressCfg := dict "global" $global.ingress "context" $ "local" .ingress -}}
+{{-       include "webservice.ingress.template" (dict "root" $ "deployment" . "ingressCfg" $ingressCfg "host" $hostname "name" $ingressName "tlsSecret" $tlsSecret) }}
+{{-       if $.Values.extraIngress.enabled }}
+{{-         $hostname = $.Values.extraIngress.hostname | default $hostname -}}
+{{-         $_ := set $ingressCfg "local" .extraIngress -}}
+{{-         $ingressName = printf "%s-extra" $ingressName -}}
+{{-         $tlsSecret = include "webservice.tlsSecret" (dict "root" $ "local" $.Values.extraIngress "certmanagerPostfix" "-extra") -}}
+{{-         include "webservice.ingress.template" (dict "root" $ "deployment" . "ingressCfg" $ingressCfg "host" $hostname "name" $ingressName "tlsSecret" $tlsSecret) }}
+{{-       end }}
+{{-     end -}}{{/* RANGE DEPLOYMENTS */}}
+{{-   end -}}{{/* INGRESS ENABLED */}}
+{{- end -}}{{/* ENABLED */}}

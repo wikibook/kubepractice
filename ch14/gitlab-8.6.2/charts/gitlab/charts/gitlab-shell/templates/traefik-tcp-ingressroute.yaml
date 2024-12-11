@@ -1,0 +1,30 @@
+{{- if .Values.enabled -}}
+{{- if eq .Values.global.ingress.provider "traefik" -}}
+{{- $traefikApiVersion := dict "global" .Values.global.traefik "local" .Values.traefik "context" . -}}
+apiVersion: "{{ template "traefik.apiVersion" $traefikApiVersion }}"
+kind: IngressRouteTCP
+metadata:
+  name: {{ $.Release.Name }}-gitlab-shell
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "gitlab.standardLabels" . | nindent 4 }}
+    {{- include "gitlab.commonLabels" . | nindent 4 }}
+spec:
+  entryPoints:
+    - {{ .Values.traefik.entrypoint }}
+  routes:
+  - match: HostSNI(`*`)
+    {{- with .Values.traefik.tcpMiddlewares }}
+    middlewares:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+    services:
+    - name: {{ template "fullname" . }}
+      namespace: {{ .Release.Namespace }}
+      port: {{ include "gitlab.shell.port" . | int }}
+      {{- if .Values.global.shell.tcp.proxyProtocol }}
+      proxyProtocol:
+        version: 2
+      {{- end }}
+{{- end -}}
+{{- end -}}

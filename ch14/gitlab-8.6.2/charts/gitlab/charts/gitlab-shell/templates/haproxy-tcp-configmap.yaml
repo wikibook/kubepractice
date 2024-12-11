@@ -1,0 +1,14 @@
+{{- if .Values.enabled -}}
+{{- if eq .Values.global.ingress.provider "haproxy" -}}
+{{- $port := include "gitlab.shell.port" . | int -}}
+{{- $tcpProxyProtocol := include "gitlab.shell.tcp.proxyProtocol" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Namespace }}-haproxy-tcp
+  namespace: {{ .Release.Namespace }}
+data:
+  # https://haproxy-ingress.github.io/docs/configuration/command-line/#tcp-services-configmap
+  {{ $port | quote }}: "{{ .Release.Namespace }}/{{ template "fullname" . }}:{{ $port }}{{ $tcpProxyProtocol }}"
+{{- end }}
+{{- end -}}

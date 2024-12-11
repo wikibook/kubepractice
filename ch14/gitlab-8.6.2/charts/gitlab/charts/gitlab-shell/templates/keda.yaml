@@ -1,0 +1,19 @@
+{{- $kedaCfg := (dict "global" .Values.global "hpa" .Values.hpa "keda" .Values.keda "minReplicas" .Values.minReplicas "maxReplicas" .Values.maxReplicas "resources" .Values.resources) -}}
+{{- $kedaEnabled := include "gitlab.keda.scaledobject.enabled" $kedaCfg -}}
+{{- if and .Values.enabled $kedaEnabled -}}
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ template "fullname" . }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "gitlab.standardLabels" . | nindent 4 }}
+    {{- include "gitlab.commonLabels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ template "fullname" . }}
+  {{- include "gitlab.keda.scaledobject.spec" $kedaCfg | nindent 2 }}
+{{- end -}}

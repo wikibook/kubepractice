@@ -1,0 +1,31 @@
+{{- if .Values.enabled -}}
+{{- $name := default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- $releaseName := .Release.Name -}}
+{{- $fullname := printf "%s-%s" $releaseName $name | trunc 63 | trimSuffix "-" -}}
+{{- range .Values.pods -}}
+{{-   $queueName := printf "%s-%s" $fullname .name | trunc 63 }}
+{{-   $hpa := merge (default dict .hpa) $.Values.hpa }}
+{{-   $keda := merge (default dict .keda) $.Values.keda }}
+{{-   $resources := merge (default dict .resources) $.Values.resources }}
+{{-   $kedaCfg := (dict "global" $.Values.global "hpa" $hpa "keda" $keda "minReplicas" (default $.Values.minReplicas .minReplicas) "maxReplicas" (default $.Values.maxReplicas .maxReplicas) "resources" $resources) }}
+{{-   $kedaEnabled := include "gitlab.keda.scaledobject.enabled" $kedaCfg }}
+{{-   if $kedaEnabled }}
+{{-   include "sidekiq.pod.common.labels" . }}
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ printf "%s-v2" ($queueName | trunc 60) }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "gitlab.standardLabels" $ | nindent 4 }}
+    {{- include "sidekiq.commonLabels" (dict "pod" .common.labels "global" $.Values.common.labels) | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ printf "%s-v2" ($queueName | trunc 60) }}
+  {{- include "gitlab.keda.scaledobject.spec" $kedaCfg | nindent 2 }}
+{{-   end -}}
+{{- end -}}
+{{- end -}}

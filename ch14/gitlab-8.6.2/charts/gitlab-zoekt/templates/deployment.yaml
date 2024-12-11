@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-gateway" (include "gitlab-zoekt.fullname" .) }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "gitlab-zoekt.labels" . | nindent 4 }}
+    {{- include "gitlab.standardLabels" . | nindent 4 }}
+    {{- include "gitlab.commonLabels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.gateway.replicas }}
+  selector:
+    matchLabels:
+      {{- include "gitlab-zoekt.gatewaySelectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/deployment-nginx-configmap.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "gitlab-zoekt.gatewaySelectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: zoekt-external-gateway
+          securityContext:
+            {{- toYaml .Values.gateway.securityContext | nindent 12 }}
+          image: {{ include "gitlab-zoekt.gatewayImage" . }}
+          imagePullPolicy: {{ coalesce .Values.gateway.image.pullPolicy .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.gateway.listen.port }}
+              name: gateway
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.gateway.listen.port }}
+              {{- if .Values.gateway.tls.certificate.enabled }}
+              scheme: HTTPS
+              {{- end }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.gateway.listen.port }}
+              {{- if .Values.gateway.tls.certificate.enabled }}
+              scheme: HTTPS
+              {{- end }}
+          resources:
+            {{- toYaml (merge .Values.gateway.resources .Values.resources) | nindent 12 }}
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
+            - name: external-nginx-var-run
+              mountPath: /var/run
+            - name: external-nginx-var-cache-nginx
+              mountPath: /var/cache/nginx
+            {{- if .Values.gateway.tls.certificate.enabled }}
+            - name: gateway-cert
+              mountPath: /etc/ssl/tls.crt
+              subPath: tls.crt
+              readOnly: true
+            - name: gateway-cert
+              mountPath: /etc/ssl/tls.key
+              subPath: tls.key
+              readOnly: true
+            {{- end }}
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: {{ include "gitlab-zoekt.configExternalGatewayMapName" . }}
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+        - name: external-nginx-var-run
+          emptyDir: {}
+        - name: external-nginx-var-cache-nginx
+          emptyDir: {}
+        {{- if .Values.gateway.tls.certificate.enabled }}
+        - name: gateway-cert
+          secret:
+            secretName: {{ .Values.gateway.tls.certificate.secretName }}
+            items:
+              - key: tls.crt
+                path: tls.crt
+              - key: tls.key
+                path: tls.key
+        {{- end }}

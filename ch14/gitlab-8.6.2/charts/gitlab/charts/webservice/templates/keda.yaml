@@ -1,0 +1,32 @@
+{{- if .Values.enabled -}}
+{{- include "webservice.datamodel.prepare" $ -}}
+{{/* BEGIN range deployments */}}
+{{- range $.Values.deployments -}}
+{{-   $kedaCfg := (dict "global" $.Values.global "hpa" .hpa "keda" .keda "resources" .resources) }}
+{{-   $kedaEnabled := include "gitlab.keda.scaledobject.enabled" $kedaCfg }}
+{{-   if $kedaEnabled }}
+{{/*
+From here on:
+- `.` is `.deployments.xyz` value
+- `.name` is the key (xyz)
+*/}}
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ template "webservice.fullname.withSuffix" . }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "gitlab.standardLabels" $ | nindent 4 }}
+    {{- include "webservice.labels" . | nindent 4 }}
+    {{- include "webservice.commonLabels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ template "webservice.fullname.withSuffix" . }}
+  {{- include "gitlab.keda.scaledobject.spec" $kedaCfg | nindent 2 }}
+{{-   end -}}
+{{- end -}}
+{{/* END range deployments */}}
+{{- end }}
