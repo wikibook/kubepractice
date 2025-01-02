@@ -1,0 +1,46 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    tags:
+      - "*" # 모든 태그에 대해 실행
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read # 코드 접근 권한
+      packages: write # GitHub Packages 업로드 권한
+
+    steps:
+      # 1. 리포지토리 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. GitHub 태그 추출
+      - name: Extract repository name
+        id: repo_name
+        run: echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
+      - name: Extract GitHub Tag
+        id: extract_tag
+        run: echo "IMAGE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      # 3. Docker 로그인
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # 4. Docker 이미지 빌드
+      - name: Build Docker Image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/${{ env.REPO_NAME }}:${{ env.IMAGE_TAG }} .
+
+      # 5. Docker 이미지 푸시
+      - name: Push Docker Image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/${{ env.REPO_NAME }}:${{ env.IMAGE_TAG }}
