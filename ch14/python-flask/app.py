@@ -1,17 +1,14 @@
-# Base image
-FROM python:3.9-slim
+from flask import Flask, jsonify
 
-# Set working directory
-WORKDIR /app
+app = Flask(__name__)
 
-# Copy application files
-COPY app.py /app/
+@app.route('/')
+def home():
+    return jsonify(message="Welcome to the Flask Web Server!")
 
-# Install Flask
-RUN pip install flask
+@app.route('/hello/<name>')
+def hello(name):
+    return jsonify(message=f"Hello, {name}!")
 
-# Expose port 5000
-EXPOSE 5000
-
-# Command to run the application
-CMD ["python", "app.py"]
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
