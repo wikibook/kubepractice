@@ -40,6 +40,9 @@ jobs:
         run: |
           docker build -t ghcr.io/${{ github.repository_owner }}/${{ env.REPO_NAME }}:${{ env.IMAGE_TAG }} .
 
+      # For Apple M Type CPU
+      # docker build -t --platform linux/arm64 ghcr.io/${{ github.repository_owner }}/${{ env.REPO_NAME }}:${{ env.IMAGE_TAG }} .
+
       # 5. Docker 이미지 푸시
       - name: Push Docker Image
         run: |
