@@ -13,7 +13,8 @@ spec:
         app: flask-web
     spec:
       containers:
-      - name: flask-web
-        image: ghcr.io/junghoon2/github-actions-python-01:v0.0.1
+        - name: flask-web
+          image: ghcr.io/junghoon2/github-actions-python-01:v0.0.1
+          imagePullPolicy: Always
       imagePullSecrets:
-      - name: ghcr-secret
+        - name: ghcr-secret
