@@ -1,0 +1,4 @@
+replicaCount: 2 # 아르고시디 테스트 1ea to 2ea 변경
+
+serviceAccount:
+  create: true
