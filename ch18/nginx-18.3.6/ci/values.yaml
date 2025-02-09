@@ -1,3 +1,6 @@
+service:
+  type: ClusterIP
+
 ## Prometheus Exporter / Metrics
 metrics:
   enabled: true
