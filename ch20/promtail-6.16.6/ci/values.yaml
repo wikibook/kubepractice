@@ -1,0 +1,17 @@
+# -- The name of the PriorityClass
+priorityClassName: system-node-critical
+
+defaultVolumes:
+  - name: run
+    hostPath:
+      path: /run/promtail
+  - name: containers
+    hostPath:
+      path: /var/lib/docker/containers
+  - name: pods
+    hostPath:
+      path: /var/log/pods
+
+tolerations:
+  - operator: Exists
+    effect: NoSchedule
