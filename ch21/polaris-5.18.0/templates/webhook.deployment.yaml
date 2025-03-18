@@ -9,6 +9,10 @@ metadata:
   labels:
     {{- include "polaris.labels" . | nindent 4 }}
     component: webhook
+  {{- with .Values.webhook.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   replicas: {{ .Values.webhook.replicas }}
   selector:
@@ -45,6 +49,11 @@ spec:
             {{- end }}
             {{- if .Values.webhook.disallowAnnotationExemptions }}
             - --disallow-annotation-exemptions
+            {{- end }}
+            - --validate={{ .Values.webhook.validate }}
+            - --mutate={{ .Values.webhook.mutate }}
+            {{- if .Values.webhook.logLevel }}
+            - --log-level={{ .Values.webhook.logLevel }}
             {{- end }}
           image: '{{.Values.image.repository}}:{{.Values.image.tag | default .Chart.AppVersion }}'
           imagePullPolicy: '{{.Values.image.pullPolicy}}'
@@ -108,6 +117,10 @@ spec:
       affinity:
 {{ toYaml .Values.webhook.affinity | indent 8 }}
 {{- end }}
+{{- if .Values.webhook.topologySpreadConstraints }}
+      topologySpreadConstraints:
+{{ toYaml .Values.webhook.topologySpreadConstraints | indent 6 }}
+      {{- end }}
       volumes:
         {{- with .Values.config }}
         - name: config

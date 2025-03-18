@@ -17,9 +17,13 @@ spec:
   - name: http-dashboard
     port: 80
     protocol: TCP
-    targetPort: {{ .Values.dashboard.port }}
+    targetPort: {{ .Values.dashboard.service.targetPort | default .Values.dashboard.port }}
   selector:
     {{- include "polaris.selectors" . | nindent 4 }}
     component: dashboard
   type: {{ .Values.dashboard.service.type }}
+{{- if .Values.dashboard.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+{{ toYaml .Values.dashboard.service.loadBalancerSourceRanges | nindent 4 }}
+{{- end }}
 {{- end -}}
