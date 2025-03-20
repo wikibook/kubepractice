@@ -1,0 +1,6 @@
+image:
+  registry: docker.io
+  repository: bitnami/redis
+  tag: 7.4.2-debian-12-r4
+  digest: ""
+  pullPolicy: Always
