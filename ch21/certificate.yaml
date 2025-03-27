@@ -1,0 +1,25 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: myweb-cert
+  namespace: default
+spec:
+  duration: 720h # for test 1 month
+  secretName: myweb-cert
+  commonName: myweb.com
+  dnsNames:
+  - "www.myweb.com"
+  - "*.myweb.com"
+  renewBefore: 719h # for test
+  isCA: true
+  privateKey:
+    algorithm: RSA
+    size: 2048
+  usages:
+    - digital signature
+    - key encipherment
+    - cert sign
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: selfsigned-issuer
