@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: backend-full-other-read
+rules:
+  # 전체 리소스에 대한 read-only 권한 (모든 네임스페이스 공통)
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch"]
+
+  # backend 네임스페이스에만 적용되도록 RoleBinding에서 사용됨
+  # 이 규칙이 backend 네임스페이스에서 RoleBinding으로 묶일 경우 모든 권한 제공됨
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]

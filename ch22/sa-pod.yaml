@@ -2,10 +2,10 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: sa-demo-pod
-  namespace: default
+  namespace: wordpress
 spec:
   serviceAccountName: wordpress-sa  # 👈 이게 핵심!
   containers:
     - name: demo-container
-      image: busybox
+      image: curlimages/curl
       command: ["sh", "-c", "sleep 3600"]

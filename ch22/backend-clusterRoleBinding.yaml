@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: backends-read-all
+subjects:
+- kind: Group
+  name: backends                            # 인증서에서 O=backends
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: view                                # Kubernetes 기본 제공 read-only 역할
+  apiGroup: rbac.authorization.k8s.io
