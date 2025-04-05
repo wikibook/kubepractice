@@ -27,6 +27,7 @@ plugins/mitogen
 # Ansible inventory
 inventory/*
 !inventory/local
+!inventory/mycluster
 !inventory/sample
 inventory/*/artifacts/
 
@@ -120,3 +121,6 @@ tmp.md
 # Ansible collection files
 kubernetes_sigs-kubespray*tar.gz
 ansible_collections
+
+# Pyenv
+kubespray-venv
