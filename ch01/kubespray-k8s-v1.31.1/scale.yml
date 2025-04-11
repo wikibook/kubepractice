@@ -1,3 +1,0 @@
----
-- name: Scale the cluster
-  ansible.builtin.import_playbook: playbooks/scale.yml
