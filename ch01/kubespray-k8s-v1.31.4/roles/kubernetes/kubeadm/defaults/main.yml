@@ -1,0 +1,8 @@
+---
+# discovery_timeout modifies the discovery timeout
+# This value must be smaller than kubeadm_join_timeout
+discovery_timeout: 60s
+kubeadm_join_timeout: 120s
+
+# Enable kubeadm file discovery if anonymous access has been removed
+kubeadm_use_file_discovery: "{{ remove_anonymous_access }}"

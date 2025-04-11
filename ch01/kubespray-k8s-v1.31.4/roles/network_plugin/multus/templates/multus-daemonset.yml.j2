@@ -1,0 +1,100 @@
+---
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+{% if container_manager_types | length >= 2 %}
+  name: kube-multus-{{ container_manager }}-{{ image_arch }}
+{% else %}
+  name: kube-multus-ds-{{ image_arch }}
+{% endif %}
+  namespace: kube-system
+  labels:
+    tier: node
+    app: multus
+spec:
+  selector:
+    matchLabels:
+      tier: node
+      app: multus
+  template:
+    metadata:
+      labels:
+        tier: node
+        app: multus
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      priorityClassName: system-node-critical
+      nodeSelector:
+        kubernetes.io/arch: {{ image_arch }}
+{% if container_manager_types | length >= 2 %}
+        kubespray.io/container_manager: {{ container_manager }}
+{% endif %}
+      tolerations:
+      - operator: Exists
+      serviceAccountName: multus
+      initContainers:
+      - name: install-multus-binary
+        image: {{ multus_image_repo }}:{{ multus_image_tag }}
+        command: ["/install_multus"]
+        args:
+        - "--type"
+        - "thin"
+        resources:
+          requests:
+            cpu: "10m"
+            memory: "15Mi"
+        securityContext:
+          privileged: true
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        - name: cnibin
+          mountPath: {{ multus_cni_bin_dir }}
+          mountPropagation: Bidirectional
+      containers:
+      - name: kube-multus
+        image: {{ multus_image_repo }}:{{ multus_image_tag }}
+        command: ["/thin_entrypoint"]
+        args:
+        - "--cni-conf-dir={{ multus_cni_conf_dir }}"
+        - "--multus-autoconfig-dir={{ multus_cni_conf_dir }}"
+        - "--cni-bin-dir={{ multus_cni_bin_dir }}"
+        - "--multus-conf-file={{ multus_conf_file }}"
+        - "--multus-kubeconfig-file-host={{ multus_kubeconfig_file_host }}"
+        - "--namespace-isolation={{ multus_namespace_isolation | string | lower }}"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "90Mi"
+          limits:
+            cpu: "100m"
+            memory: "90Mi"
+        securityContext:
+          privileged: true
+{% if container_manager == 'crio' %}
+          capabilities:
+            add: ["SYS_ADMIN"]
+{% endif %}
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+{% if container_manager == 'crio' %}
+        - name: run
+          mountPath: {{ multus_cni_run_dir }}
+          mountPropagation: HostToContainer
+{% endif %}
+        - name: cni
+          mountPath: {{ multus_cni_conf_dir }}
+        - name: cnibin
+          mountPath: {{ multus_cni_bin_dir }}
+      volumes:
+{% if container_manager == 'crio' %}
+      - name: run
+        hostPath:
+          path: {{ multus_cni_run_dir_host }}
+{% endif %}
+      - name: cni
+        hostPath:
+          path: {{ multus_cni_conf_dir_host }}
+      - name: cnibin
+        hostPath:
+          path: {{ multus_cni_bin_dir_host }}
