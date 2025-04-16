@@ -1,0 +1,61 @@
+defaultRules:
+  create: true
+
+grafana:
+  enabled: true
+  defaultDashboardsTimezone: Asia/Seoul
+
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations: 
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      cert-manager.io/cluster-issuer: "selfsigned-issuer"
+    hosts:
+      - grafana.myweb.com
+    tls:
+      - hosts: 
+        - grafana.myweb.com
+        secretName: grafana.local-tls
+
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: "longhorn"
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+
+kubeProxy:
+  enabled: true
+  service:
+    selector:
+      k8s-app: kube-proxy
+
+  serviceMonitor:
+    selector:
+     matchLabels:
+       k8s-app: kube-proxy
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+    retention: 5d
+    retentionSize: "1GiB"
+
+    ## Resource limits & requests
+    ##
+    resources: {}
+    # requests:
+    #   memory: 400Mi
+
+    storageSpec:
+     volumeClaimTemplate:
+       spec:
+         storageClassName: longhorn
+         accessModes: ["ReadWriteOnce"]
+         resources:
+           requests:
+             storage: 1Gi
